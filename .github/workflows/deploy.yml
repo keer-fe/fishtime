@@ -1,0 +1,39 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # 监听main分支的push事件
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # 获取代码
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4  # 设置 Node.js 环境
+        with:
+          node-version: '20'  # 根据项目需求选择 Node 版本
+
+      - name: Install dependencies
+        run: yarn install  # 安装项目依赖
+
+      - name: Build project
+        run: yarn run build  # 执行项目构建
+        env:
+          NODE_ENV: production  # 设置生产环境变量
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.7  # 使用SSH部署
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd /home/ec2-user/project/fishtime  # 项目目录
+            git pull origin main  # 拉取最新代码
+            cp -r ~/github/workspace/dist/* .  # 复制构建产物到服务器
+            sudo systemctl restart nginx  # 重启Web服务器    
