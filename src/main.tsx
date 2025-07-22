@@ -1,10 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import { ANTD_THEME } from './config/theme.ts'
+import { ConfigProvider } from 'antd'
 import App from './App.tsx'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ConfigProvider theme={{ token: ANTD_THEME }}>
+      <App />
+    </ConfigProvider>
   </StrictMode>,
 )
