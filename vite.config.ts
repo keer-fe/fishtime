@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // 全局 less 文件的路径
-const variablePath = normalizePath(path.resolve('./src/assets/styles/variable.less'))
+const variablePath = normalizePath(
+  path.resolve('./src/assets/styles/variable.less')
+)
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,8 +13,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        additionalData: `@import "${variablePath}";`,
-      },
-    },
-  },
+        additionalData: `@import "${variablePath}";`
+      }
+    }
+  }
 })

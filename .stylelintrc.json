@@ -1,0 +1,22 @@
+{
+  "plugins": ["stylelint-prettier"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-less",
+    "stylelint-config-recess-order",
+    "stylelint-prettier/recommended"
+  ],
+  "customSyntax": "postcss-less",
+  "rules": {
+    "prettier/prettier": true,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "extend", "mixin", "include", "less", "import", "export", 
+          "loop", "when", "each"
+        ]
+      }
+    ]
+  }
+}

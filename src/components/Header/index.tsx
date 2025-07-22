@@ -1,9 +1,7 @@
 import './index.less'
 
 function Header() {
-  return (
-    <div className="header">Header</div>
-  )
+  return <div className="header">Header</div>
 }
 
 export default Header

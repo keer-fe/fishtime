@@ -3,7 +3,7 @@ import logo from '/logo.png'
 import { Button } from 'antd'
 import { Header } from './components'
 
-import './App.css'
+// import './App.less'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,10 +12,10 @@ function App() {
     <>
       <Header />
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noreferrer">
           <img src={logo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noreferrer">
           <img src={logo} className="logo" alt="Vite logo" />
         </a>
       </div>
