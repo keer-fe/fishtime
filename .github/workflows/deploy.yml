@@ -22,3 +22,25 @@ jobs:
             yarn install
             yarn build
             sudo systemctl restart nginx
+            echo "自动化构建部署成功!"  # 部署完成提示
+
+      # 通过 Server 酱 App 发送通知
+      - name: 发送 Server 酱通知
+        if: always()  # 无论前面步骤成功/失败都发送通知
+        run: |
+          # 定义通知内容
+          TITLE="GitHub Actions 任务状态: ${{ job.status }}"
+          # 构建详细内容（支持 Markdown 格式）
+          DESP="### 工作流信息
+          - 仓库: ${{ github.repository }}
+          - 工作流名称: ${{ github.workflow }}
+          - 运行状态: ${{ job.status }}
+          - 触发者: ${{ github.actor }}
+          - 触发事件: ${{ github.event_name }}
+          - 运行时间: $(date +'%Y-%m-%d %H:%M:%S')
+          - 详情链接: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          
+          # 发送通知请求
+          curl -s "https://9863.push.ft07.com/send/${{ secrets.SERVERCHAN_SENDKEY }}.send" \
+            -d "title=$TITLE" \
+            -d "desp=$DESP"
