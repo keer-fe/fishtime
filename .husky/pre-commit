@@ -1,11 +1,2 @@
 # 执行 yarn lint 命令
-echo "🔍 开始执行 lint 检查..."
-yarn lint
-
-# 检查命令执行结果（$? 为上一条命令的退出码，0 表示成功）
-if [ $? -ne 0 ]; then
-  echo "❌ Lint 检查失败，请修复错误后再提交！"
-  exit 1  # 非0退出码会阻止提交
-fi
-
-echo "✅ Lint 检查通过，准备提交..."
+npx lint-staged
