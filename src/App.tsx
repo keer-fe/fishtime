@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import logo from '/logo.png'
 import { Button } from 'antd'
+import { Header } from './components'
+
 import './App.css'
 
 function App() {
@@ -8,7 +10,11 @@ function App() {
 
   return (
     <>
+      <Header />
       <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={logo} className="logo" alt="Vite logo" />
+        </a>
         <a href="https://vite.dev" target="_blank">
           <img src={logo} className="logo" alt="Vite logo" />
         </a>
