@@ -19,7 +19,7 @@ const App: React.FC = () => {
   }, [])
 
   return (
-    <Layout>
+    <Layout className="m-layout">
       <Header className="m-layout-header">
         <div className="m-layout-header__inner">
           <a href="//www.fishtime.fun" className="m-layout-header__logo">

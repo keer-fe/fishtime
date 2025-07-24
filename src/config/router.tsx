@@ -1,7 +1,10 @@
-import Calendar from '../pages/calendar/index'
-import Weather from '../pages/weather/index'
+import { Calendar, Weather, Home } from '../pages'
 
 export const router = [
+  {
+    index: true,
+    Component: Home
+  },
   {
     path: 'calendar',
     Component: Calendar
