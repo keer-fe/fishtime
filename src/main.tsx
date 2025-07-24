@@ -1,14 +1,31 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDom from 'react-dom/client'
 import { ANTD_THEME } from './config/theme.ts'
 import { ConfigProvider } from 'antd'
-import App from './App.tsx'
-// import './index.less'
+import { createBrowserRouter, RouterProvider } from 'react-router'
+import { router as pageRouter } from './config/router.tsx'
+import { Layout } from '@/components'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ConfigProvider theme={{ token: ANTD_THEME }}>
-      <App />
-    </ConfigProvider>
-  </StrictMode>
+import '@/assets/styles/global.less'
+
+function Root() {
+  return (
+    <StrictMode>
+      <ConfigProvider theme={{ token: ANTD_THEME }}>
+        <Layout />
+      </ConfigProvider>
+    </StrictMode>
+  )
+}
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    Component: Root,
+    children: pageRouter
+  }
+])
+
+ReactDom.createRoot(document.getElementById('root')!).render(
+  <RouterProvider router={router} />
 )
